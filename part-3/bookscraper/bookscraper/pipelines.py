@@ -70,10 +70,10 @@ class SaveToMySQLPipeline:
 
     def __init__(self):
         self.conn = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='REMOVED_FROM_HISTORY',
-            database='books'
+            host=os.environ.get('MYSQL_HOST', 'localhost'),
+            user=os.environ.get('MYSQL_USER', 'root'),
+            password=os.environ.get('MYSQL_PASSWORD'),
+            database=os.environ.get('MYSQL_DATABASE', 'books'),
         )
 
         ## Create cursor, used to execute commands
